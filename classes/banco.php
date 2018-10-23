@@ -1,26 +1,21 @@
 <?php
 
-class banco{
-
-	private $host;
-	private $user;
-	private $senha;
-	private $banco_nome;
-	public $mysqli;
 
 
-	public function __construct() {
-		$this->banco_connect();
-	}
-
-
-	private function banco_connect(){
-		$this->host = 'localhost';
-		$this->user = 'root';
-		$this->senha = '';
-		$this->banco_nome = 'banco_aluguel';
-	}
-
+class banco extends PDO {
+	
+		private $conn;	
+		// Função "mágica" para conectar com o banco
+		private $user = "root";
+		private $pass ="";
+		private $name = "mysql:host=localhost;dbname=banco_aluguel";
+ 
+	public function __construct()
+		{
+		parent::__construct($this->name, $this->user, $this->pass);
+		}
+				
+		
 }
 
 
