@@ -1,4 +1,4 @@
-	</section>
+	</div>
 	<footer>
 		<div id="rodape">
 			<div id="rodape1">

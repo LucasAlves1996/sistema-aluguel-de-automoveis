@@ -9,12 +9,7 @@
 <body>
 	<header>
 		<div id="banner">
-			
+			<img src="./imgs/logo.png" style="width:80px; height:38px; margin:20px 0px 0px 20px">
 		</div>
 	</header>
-	<nav>
-		<div id="menu">
-			
-		</div>
-	</nav>
-	<section id="secao">
+	<div class="fundo">

@@ -1,7 +1,8 @@
-		<div id="secaoForm">
+	<section id="secaoLogin">	
+		<div id="formLogin">
 			<h1>Login</h1>
 			<div id="form">
-				<form method="POST" action="">
+				<form method="POST" action="./php/valida_login.php">
 					<label>User:</label><br>
 					<input type="text" name="user" id="user" placeholder="Digite o nome de usuário..." required><br>
 					<label>Password:</label><br>
@@ -10,3 +11,4 @@
 				</form>
 			</div>
 		</div>
+	</section>

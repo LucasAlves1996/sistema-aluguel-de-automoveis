@@ -1,38 +1,67 @@
 body{
 	margin:0;
 	font-family:arial, sans-serif;
-	}
+}
+section{
+	background-color:rgb(0,0,0);
+}
 footer{
-	background-color:rgb(0,0,125);
+	background-color:rgb(13,13,13);
+	box-shadow: 0px 0px 5px 3px black;
+	position:relative;
+	z-index:2;
 }
 #banner{
-	background-color:rgb(0,0,125);
+	background-color:rgb(13,13,13);
 	width:100%;
 	height:80px;
-	box-shadow:0px 0px 5px 5px black;
+	box-shadow:0px 3px 5px 0px black;
 	position:relative;
+	z-index:2;
 }
 #menu{
-	
+	width:1000px;
+	margin:auto;
+	padding-top:100px;
 }
-#secao{
-	background-color:rgb(250,250,80);
+#bt-cadastra-cliente{
+	float:left;
+	width:33.333%;
+}
+#bt-cadastra-automovel{
+	float:left;
+	width:33.333%;
+}
+#bt-efetua-aluguel{
+	float:left;
+	width:33.333%;
+}
+#fundoMenu{
 	width:100%;
-	height:550px;
+	height:100%;
+	height:670px;
+	padding-top:188px;
+	background-color:rgba(0,0,0,.7);
+}
+#secaoLogin{
+	position:relative;
+	background-color:rgba(0,0,0,.6);
+	width:100%;
+	height:670px;
 	padding-top:125px;
 }
-#secaoForm{
+#formLogin{
 	margin:auto;
 	width:50%;
 	border-style:solid;
 	border-width:5px;
-	border-color:rgb(0,0,125);
+	border-color:rgba(13,13,13,.7);
 	padding:0px 0px 55px 0px;
 	border-radius:5px;
 }
-#secaoForm h1{
+#formLogin h1{
 	margin:0px 0px 45px 0px;
-	background-color:rgb(0,0,125);
+	background-color:rgba(13,13,13,.7);
 	color:rgb(255,255,255);
 	text-align:center;
 	padding:12px 0px 17px 0px;
@@ -40,60 +69,106 @@ footer{
 #form{
 	margin:auto;
 	width:80%;
-	color:rgb(0,0,125);
+	color:rgb(255,255,255);
 	font-weight:bold;
 }
 #user{
 	width:100%;
-	padding:8px 0px 8px 0px;
+	padding:10px 0px 10px 0px;
 	margin:5px 0px 10px 0px;
 	border:none;
-	border-radius:5px;
+	border-radius:3px;
 	font-size:15px;
 	outline:none;
+	box-shadow:0px 0.5px 1.5px 0px rgb(170,170,170);
 }
 #password{
 	width:100%;
-	padding:8px 0px 8px 0px;
+	padding:10px 0px 10px 0px;
 	margin:5px 0px 10px 0px;
 	border:none;
-	border-radius:5px;
+	border-radius:3px;
 	font-size:15px;
 	outline:none;
+	box-shadow:0px 0.5px 1.5px 0px rgb(170,170,170);
+}
+#user:focus{
+	box-shadow:0px 1px 3px 0px rgb(170,170,170);
+}
+#password:focus{
+	box-shadow:0px 1px 3px 0px rgb(170,170,170);
+}
+#user:hover{
+	box-shadow:0px 1px 3px 0px rgb(170,170,170);
+}
+#password:hover{
+	box-shadow:0px 1px 3px 0px rgb(170,170,170);
 }
 #submit{
 	width:100%;
 	font-size:15px;
 	margin-top:40px;
-	padding:8px 0px 8px 0px;
+	padding:11px 0px 11px 0px;
 	color:rgb(255,255,255);
-	border-style:solid;
-	border-width:1px;
-	border-color:rgb(0,0,110);
+	border-style:none;
 	border-radius:5px;
-	background-color:rgb(0,0,125);
+	background-color:rgb(50,125,50);
 	cursor:pointer;
 	font-weight:bold;
 }
 #submit:hover{
-	background-color:rgb(0,0,110);
-}
-#rodape{
-	background-color:rgb(0,0,125);
+	background-color:rgb(50,135,50);
 }
 #rodape3{
-	background-color:rgb(0,0,60);
+	background-color:rgb(8,8,8);
+	position:relative;
+	z-index:2;
+	float:left;
+	width:100%;
+	text-align:center;
+	padding:2px 0px 2px 0px;
+}
+#rodape3 h2{
+	color:rgb(255,255,255);
+	font-size:19px;
+	font-family:cursive;
 }
 .hr-rodape{
-		width:80%;
-		display:none;
-	}
+	width:80%;
+	display:none;
+}
+.fundo{
+	width:100%;
+	height:100%;
+	background-image:url(../imgs/fundo.jpg);
+	position:relative;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-size:cover;
+}
+.bt-menu{
+	margin:auto;
+	width:250px;
+	color:rgb(255,255,255);
+	background-color:rgb(15,15,15);
+	font-family:cursive;
+	border:none;
+	font-size:30px;
+	outline:none;
+	cursor:pointer;
+	box-shadow:0px 0px 5px 0px rgb(15,15,15);
+	padding:60px 18px 60px 18px;
+	border-radius:100px;
+}
+.bt-menu:hover{
+	box-shadow:0px 0px 200px 0px rgb(50,50,50);
+}
 @media (min-width:1280px){
 	footer{
 		width:100%;
 		height:275px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:1095px;
@@ -157,7 +232,6 @@ footer{
 		width:100%;
 		height:275px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:1045px;
@@ -221,7 +295,6 @@ footer{
 		width:100%;
 		height:275px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:995px;
@@ -285,7 +358,6 @@ footer{
 		width:100%;
 		height:275px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:935px;
@@ -353,7 +425,6 @@ footer{
 		width:100%;
 		height:400px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:90%;
@@ -415,34 +486,21 @@ footer{
 		padding:0;
 	}
 }
+@media(max-width:780px){
+	#formLogin{
+		width:80%;
+	}
+}
 @media(max-width:509px){
-	#secao{
-		background-color:rgb(250,250,80);
+	#secaoLogin{
 		width:100%;
 		height:500px;
 		padding-top:80px;
-	}
-	#secaoForm{
-		margin:auto;
-		width:80%;
-		border-style:solid;
-		border-width:5px;
-		border-color:rgb(0,0,125);
-		padding:0px 0px 50px 0px;
-		border-radius:5px;
-	}
-	#secaoForm h1{
-		margin:0px 0px 40px 0px;
-		background-color:rgb(0,0,125);
-		color:rgb(255,255,255);
-		text-align:center;
-		padding:12px 0px 17px 0px;
 	}
 	footer{
 		width:100%;
 		height:500px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:90%;
@@ -510,7 +568,6 @@ footer{
 		width:100%;
 		height:580px;
 		padding:0px 0px 70px 0px;
-		box-shadow: 0px 0px 10px 5px black;
 	}
 	#rodape{
 		width:90%;
