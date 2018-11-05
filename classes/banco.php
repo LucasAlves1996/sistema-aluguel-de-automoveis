@@ -8,7 +8,7 @@ class banco extends PDO {
 		// Função "mágica" para conectar com o banco
 		private $user = "root";
 		private $pass ="";
-		private $name = "mysql:host=localhost;dbname=aluguel_veiculos";
+		private $name = "mysql:host=localhost;dbname=banco_aluguel";
  
 	public function __construct()
 		{
