@@ -1,18 +1,10 @@
-		<section id="fundoMenu">
+		<section>
+			<div id="menuTitle">
+				<h1>O que você quer fazer?</h1>
+			</div>
 			<div id="menu">
-				<div align="left" id="bt-cadastra-cliente">
-					<button class="bt-menu">Cadastrar cliente</button>
-				</div>
-				
-				<div align="center" id="bt-cadastra-automovel">
-					<button class="bt-menu" onclick="window.location.href = 'veiculo.php';" >Cadastrar automóvel</button>
-				</div>
-				
-				<div align="right" id="bt-efetua-aluguel">
-					<button onclick="window.location.href = 'aluguel.php';" class="bt-menu">Aluguel de carros</button>
-				</div>
-
-			
-
+				<button id="bt-cadastra-cliente" class="bt-menu">Administrar clientes</button>
+				<button id="bt-cadastra-automovel" class="bt-menu" onclick="window.location.href = 'veiculo.php';">Administrar automóveis</button>
+				<button id="bt-efetua-aluguel" class="bt-menu" onclick="window.location.href = 'aluguel.php';">Alugar um carro</button>
 			</div>
 		</section>	

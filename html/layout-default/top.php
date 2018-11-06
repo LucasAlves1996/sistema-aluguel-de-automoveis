@@ -4,8 +4,7 @@
 	<title></title>
 	<!-- jquery-->
 	<script
-			  src="https://code.jquery.com/jquery-3.3.1.min.js">
-			  	
+		src="https://code.jquery.com/jquery-3.3.1.min.js"> 	
 	</script>
 	
 	<!-- CSS default -->
@@ -38,6 +37,7 @@
 	<!-- jquery validate plugin -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
 
+	<meta name="viewport" content="width=device-width">
 	<meta charset="utf-8">
 </head>
 <body>
@@ -46,4 +46,3 @@
 			<img src="./imgs/logo.png" style="width:80px; height:38px; margin:20px 0px 0px 20px">
 		</div>
 	</header>
-	<div class="fundo">

@@ -1,21 +1,16 @@
-html{
-	height: 100%;
+body{
+	margin:0;
+	width:100%;
+	height:100%;
+	background-color:rgb(25,25,25) !important;
+	position:absolute;
+	color:rgb(255,255,255) !important;
+}
+label{
+	margin-bottom:5px !important;
 }
 
-body{
-	height: 100%;
-	margin:0;
-	font-family:arial, sans-serif;
-}
-section{
-	background-color:rgb(0,0,0);
-}
-footer{
-	background-color:rgb(13,13,13);
-	box-shadow: 0px 0px 5px 3px black;
-	position:relative;
-	z-index:2;
-}
+/* Banner */
 #banner{
 	background-color:rgb(13,13,13);
 	width:100%;
@@ -24,45 +19,18 @@ footer{
 	position:relative;
 	z-index:2;
 }
-#menu{
-	width:1000px;
-	margin:auto;
-	padding-top:100px;
-}
-#bt-cadastra-cliente{
-	float:left;
-	width:33.333%;
-}
-#bt-cadastra-automovel{
-	float:left;
-	width:33.333%;
-}
-#bt-efetua-aluguel{
-	float:left;
-	width:33.333%;
-}
-#fundoMenu{
-	width:100%;
-	height:100%;
-	height:670px;
-	padding-top:188px;
-	background-color:rgba(0,0,0,.7);
-}
-#secaoLogin{
-	position:relative;
-	background-color:rgba(0,0,0,.6);
-	width:100%;
-	height:670px;
-	padding-top:125px;
-}
+
+/* Formulário de Login */
 #formLogin{
-	margin:auto;
 	width:50%;
 	border-style:solid;
 	border-width:5px;
 	border-color:rgba(13,13,13,.7);
 	padding:0px 0px 55px 0px;
 	border-radius:5px;
+	position:absolute;
+	left:25%;
+	top:30%;
 }
 #formLogin h1{
 	margin:0px 0px 45px 0px;
@@ -70,6 +38,8 @@ footer{
 	color:rgb(255,255,255);
 	text-align:center;
 	padding:12px 0px 17px 0px;
+	font-family:cursive;
+	font-size:30px;
 }
 #form{
 	margin:auto;
@@ -80,7 +50,7 @@ footer{
 #user{
 	width:100%;
 	padding:10px 0px 10px 0px;
-	margin:5px 0px 10px 0px;
+	margin:0px 0px 15px 0px;
 	border:none;
 	border-radius:3px;
 	font-size:15px;
@@ -90,7 +60,7 @@ footer{
 #password{
 	width:100%;
 	padding:10px 0px 10px 0px;
-	margin:5px 0px 10px 0px;
+	margin:0px 0px 15px 0px;
 	border:none;
 	border-radius:3px;
 	font-size:15px;
@@ -112,8 +82,8 @@ footer{
 #submit{
 	width:100%;
 	font-size:15px;
-	margin-top:40px;
-	padding:11px 0px 11px 0px;
+	margin-top:30px;
+	padding:10px 0px 10px 0px;
 	color:rgb(255,255,255);
 	border-style:none;
 	border-radius:5px;
@@ -124,43 +94,43 @@ footer{
 #submit:hover{
 	background-color:rgb(50,135,50);
 }
-#rodape3{
-	background-color:rgb(8,8,8);
-	position:relative;
-	z-index:2;
-	float:left;
-	width:100%;
-	text-align:center;
-	padding:2px 0px 2px 0px;
+
+/* Menu */
+#menuTitle{
+	display:grid;
+	grid-template-columns:100%;
+	margin-top:5%;
 }
-#rodape3 h2{
-	color:rgb(255,255,255);
-	font-size:19px;
+#menuTitle h1{
 	font-family:cursive;
+	font-weight:bold;
+	font-size:60px;
+	color:rgb(200,200,200);
+	margin:auto;
+	text-align:center;
 }
-.hr-rodape{
-	width:80%;
-	display:none;
+#menu{
+	display:grid;
+	grid-template-columns:33.3333333333% 33.3333333333% 33.3333333333%;
+	margin-top:10%;
 }
-.fundo{
-	width:100%;
-	height:100%;
-	background-color: black;
-	position:relative;
-	background-position:center center;
-	background-repeat:no-repeat;
-	background-attachment:fixed;
-	background-size:cover;
+#bt-cadastra-cliente{
+	outline:none;
+}
+#bt-cadastra-automovel{
+	outline:none;
+}
+#bt-efetua-aluguel{
+	outline:none;
 }
 .bt-menu{
 	margin:auto;
 	width:250px;
-	color:rgb(255,255,255);
+	color:rgb(200,200,200);
 	background-color:rgb(15,15,15);
 	font-family:cursive;
 	border:none;
 	font-size:30px;
-	outline:none;
 	cursor:pointer;
 	box-shadow:0px 0px 5px 0px rgb(15,15,15);
 	padding:60px 18px 60px 18px;
@@ -169,468 +139,84 @@ footer{
 .bt-menu:hover{
 	box-shadow:0px 0px 200px 0px rgb(50,50,50);
 }
-@media (min-width:1280px){
-	footer{
-		width:100%;
-		height:275px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:1095px;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	#rodape1{
-		width:520px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-right:150px;
-		text-align:left;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:275px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-left:150px;
-		text-align:center;
-		line-height:30px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:19px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
+
+/* Administrar automóveis */
+#btn_cadastro{
+	background-color:rgb(50,125,50);
+	border:none;
+	box-shadow:none;
+}
+#btn_cadastro:hover{
+	background-color:rgb(60,150,60);
+}
+#cadastrar_veic{
+	background-color:rgb(50,125,50);
+	border:none;
+	box-shadow:none;
+}
+#cadastrar_veic:hover{
+	background-color:rgb(60,150,60);
 }
 
-@media(max-width:1279px){
-	footer{
-		width:100%;
-		height:275px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:1045px;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	#rodape1{
-		width:520px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-right:125px;
-		text-align:left;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:275px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-left:125px;
-		text-align:center;
-		line-height:30px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:19px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
+#bt-cancelar{
+	background-color:rgb(180,50,50);
+	border:none;
+	box-shadow:none;
+}
+#bt-cancelar:hover{
+	background-color:rgb(205,60,60);
+}
+#modal_cadastro{
+	color:rgb(0,0,0);
+}
+.responsive-table{
+	overflow-x:auto;
 }
 
-@media(max-width:1150px){
-	footer{
-		width:100%;
-		height:275px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:995px;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	#rodape1{
-		width:520px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-right:100px;
-		text-align:left;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:275px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-left:100px;
-		text-align:center;
-		line-height:30px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:19px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
-}
-
-@media(max-width:1024px){
-	footer{
-		width:100%;
-		height:275px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:935px;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	.hr-rodape{
-		width:80%;
-		display:none;
-	}
-	#rodape1{
-		width:520px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-right:65px;
-		text-align:left;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:285px;
-		float:left;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		padding-left:65px;
-		text-align:center;
-		line-height:30px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:19px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
-}
-
-@media (max-width:959px){
-	footer{
-		width:100%;
-		height:400px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:90%;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	.hr-rodape{
-		width:100%;
-		display:block;
-		overflow:auto;
-		margin:0;
-	}
-	#rodape1{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:left;
-		padding:0px 0px 20px 0px;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:center;
-		line-height:30px;
-		padding:20px 0px 0px 0px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:19px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
-}
 @media(max-width:780px){
 	#formLogin{
 		width:80%;
+		left:10%;
+		top:25%;
+	}
+	#formLogin h1{
+		margin:0px 0px 25px 0px;
+	}
+	#user{
+		margin:0px 0px 10px 0px;
+	}
+	#password{
+		margin:0px 0px 10px 0px;
+	}
+	#submit{
+		margin-top:20px;
+	}
+	#menu{
+		display:grid;
+		grid-template-columns:100%;
+		margin-top:10%;
+	}
+	#bt-cadastra-cliente{
+		margin-bottom:50px;
+	}
+	#bt-cadastra-automovel{
+		margin-bottom:50px;
+	}
+	#bt-efetua-aluguel{
+		margin-bottom:50px;
+	}
+	#menuTitle h1{
+		font-size:40px;
+	}
+	.bt-menu{
+		width:200px;
+		font-size:20px;
 	}
 }
-@media(max-width:509px){
-	#secaoLogin{
-		width:100%;
-		height:500px;
-		padding-top:80px;
-	}
-	footer{
-		width:100%;
-		height:500px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:90%;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	.hr-rodape{
-		width:100%;
-		display:block;
-		overflow:auto;
-		margin:0;
-	}
-	#rodape1{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:left;
-		padding:0px 0px 20px 0px;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:center;
-		line-height:30px;
-		padding:20px 0px 0px 0px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:16px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
-	}
-}
-
-@media(max-width:300px){
-	footer{
-		width:100%;
-		height:580px;
-		padding:0px 0px 70px 0px;
-	}
-	#rodape{
-		width:90%;
-		height:100%;
-		color:rgb(255,255,255);
-		padding:70px 0px 0px 0px;
-		margin:auto;
-	}
-	.hr-rodape{
-		width:100%;
-		display:block;
-		overflow:auto;
-		margin:0;
-	}
-	#rodape1{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:left;
-		padding:0px 0px 20px 0px;
-	}
-	#rodape1 h2{
-		margin:0;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape1 p{
-		padding:8px 0;
-		margin:0;
-	}
-	#rodape2{
-		width:100%;
-		font-family:Lato;
-		font-size:16px;
-		font-weight:300;
-		text-align:center;
-		line-height:30px;
-		padding:20px 0px 0px 0px;
-	}
-	#rodape2 h2{
-		margin-bottom:8px;
-		font-size:26px;
-		font-weight:700;
-	}
-	#rodape3{
-		padding:18px 0px 18px 0px;
-		text-align:center;
-		float:left;
-		width:100%
-	}
-	#rodape3 h2{
-		color:rgb(255,255,255);
-		font-size:16px;
-		font-family:cursive;
-	}
-	h2{
-		margin:0;
-		padding:0;
+@media(max-height:568px){
+	#formLogin{
+		width:80%;
+		left:10%;
+		top:25%;
 	}
 }

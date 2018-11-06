@@ -36,7 +36,7 @@ $veiculo = new automovel();
       </div> <!-- FINAL COLUNA -->
 
       <div class="col-md-2">
-        <label for="select_pesquisa">Selecione Um Tipo: </label>
+        <label for="select_pesquisa">Filtro: </label>
       <div>
         <select id="select_pesquisa" class="form-control">
           <option>ID</option>
@@ -55,7 +55,7 @@ $veiculo = new automovel();
   <?php $veiculo_view = $veiculo->listar(); ?>
 
   <div class="row"> <!-- ROW TABLEA -->
-    <div class="col-md-12 mt-4">
+    <div class="col-md-12 mt-4 responsive-table">
 
           <table id="table_carro" class="table table-dark">
              <thead>
@@ -303,8 +303,8 @@ $veiculo = new automovel();
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         <button id="cadastrar_veic" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

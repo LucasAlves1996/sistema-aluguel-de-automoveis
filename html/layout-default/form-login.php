@@ -1,4 +1,4 @@
-	<section id="secaoLogin">	
+	<section>	
 		<div id="formLogin">
 			<h1>Login</h1>
 			<div id="form">
