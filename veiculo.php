@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-require_once ("html/layout-default/top.php");
+session_start();
+
+include ("html/layout-default/top.php");
 
 require ("classes/automovel.php");
 $veiculo = new automovel();

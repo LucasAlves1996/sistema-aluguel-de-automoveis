@@ -43,6 +43,23 @@
 <body>
 	<header>
 		<div id="banner">
-			<img src="./imgs/logo.png" style="width:80px; height:38px; margin:20px 0px 0px 20px">
+			<a href="./index.php">
+				<div id="bannerImg">
+					<img src="./imgs/logo.png" style="width:80px; height:38px; margin:24px 0px 0px 20px">
+				</div>
+			</a>
 		</div>
 	</header>
+	<?php
+		if(isset($_SESSION['user'])){
+	?>
+	<nav id="nav">
+		<ul>
+			<li><a href="index.php">Início</a></li>
+			<li><a href="">Minha conta</a></li>
+			<li><a href="./php/logout.php">Sair</a></li>
+		</ul>
+	</nav>
+	<?php
+		}
+	?>
