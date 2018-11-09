@@ -101,48 +101,49 @@ class cliente {
 
 
 
-public function inserir_cliente(){
-    $nome = $_POST['nome'];
-	$data = $_POST['data'];
-    $cpf = $_POST['cpf'];
-    $telefone = $_POST['telefone'];
-    $rua = $_POST['rua'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $cidade = $_POST['cidades'];
-    $estado = $_POST['estados'];
-			if($this->procura_cpf($cpf) == true){
-				$stmt = $this->banco->prepare("insert into cliente (nome_cliente,data_cadastro, cpf, telefone) values ( :NOME,:DATA,:CPF,:TELEFONE)");
-				$stmt1 = $this->banco->prepare("insert into endereco (nome_rua, numero_residencia, complemento_residencia) values ( :RUA,:NUMERO,:COMPLEMENTO)");
-				$stmt2 = $this->banco->prepare("insert into cidade (nome_cidade) values(:CIDADE");
-				$stmt3 = $this->banco->prepare("insert into pais_uf (nome estado) values(:ESTADO"); 
-				$stmt->bindParam(':NOME', $nome);
-				$stmt->bindParam(':DATA',$data);
-				$stmt->bindParam(':CPF', $cpf);	
-				$stmt->bindParam(':TELEFONE', $telefone);	
-				$stmt1->bindParam(':RUA', $rua);				
-				$stmt1->bindParam(':NUMERO', $numero);
-				$stmt1->bindParam(':COMPLEMENTO', $complemento);
-				$stmt2->bindParam(':CIDADE', $cidade);	
-				$stmt3->bindParam(':ESTADO', $estado);	
-				$stmt->execute();
-				$stmt1->execute();
-				$stmt2->execute();
-				$stmt3->execute();
-				
+    public function inserir_cliente(){
+        $nome = $_POST['nome'];
+    	$data = $_POST['data'];
+        $cpf = $_POST['cpf'];
+        $telefone = $_POST['telefone'];
+        $rua = $_POST['rua'];
+        $numero = $_POST['numero'];
+        $complemento = $_POST['complemento'];
+        $cidade = $_POST['cidades'];
+        $estado = $_POST['estados'];
+		if($this->procura_cpf($cpf) == true){
+			$stmt = $this->banco->prepare("insert into cliente (nome_cliente,data_cadastro, cpf, telefone) values ( :NOME,:DATA,:CPF,:TELEFONE)");
+			$stmt1 = $this->banco->prepare("insert into endereco (nome_rua, numero_residencia, complemento_residencia) values ( :RUA,:NUMERO,:COMPLEMENTO)");
+			$stmt2 = $this->banco->prepare("insert into cidade (nome_cidade) values(:CIDADE");
+			$stmt3 = $this->banco->prepare("insert into pais_uf (nome estado) values(:ESTADO"); 
+			$stmt->bindParam(':NOME', $nome);
+			$stmt->bindParam(':DATA',$data);
+			$stmt->bindParam(':CPF', $cpf);	
+			$stmt->bindParam(':TELEFONE', $telefone);	
+			$stmt1->bindParam(':RUA', $rua);				
+			$stmt1->bindParam(':NUMERO', $numero);
+			$stmt1->bindParam(':COMPLEMENTO', $complemento);
+			$stmt2->bindParam(':CIDADE', $cidade);	
+			$stmt3->bindParam(':ESTADO', $estado);	
+			$stmt->execute();
+			$stmt1->execute();
+			$stmt2->execute();
+			$stmt3->execute();	
 
 			if ($stmt == true){
 			  echo "<script>('Dados cadastrados com sucesso!')</script>";
 		    } else{
 			    echo  "<script>('Erro ao cadastrar Dados!')</script>";
 		    }
-			} else {
-				echo "<script> alert('ja existe cpf cadastrado')</script>";
-						
-			}
-		
-
+		} else {
+			echo "<script> alert('ja existe cpf cadastrado')</script>";			
+		}		
 }
+
+    public function listar(){
+        
+    }
+
 	public function procura_cpf($cpf){  
 	 
 	  $stmt = $this->banco->prepare("select cpf from cliente where cpf = :CPF");
