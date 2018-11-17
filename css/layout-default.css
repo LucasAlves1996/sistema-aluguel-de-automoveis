@@ -192,12 +192,12 @@ label{
 #btn_cadastro:hover{
 	background-color:rgb(60,150,60);
 }
-#cadastrar_veic{
+#bt-cadastrar{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#cadastrar_veic:hover{
+#bt-cadastrar:hover{
 	background-color:rgb(60,150,60);
 }
 

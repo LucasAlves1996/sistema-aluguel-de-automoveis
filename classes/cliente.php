@@ -12,6 +12,7 @@ class cliente {
     private $complemento;
     private $cidade;
     private $estado;
+    private $pais;
 	private $banco;
 	
 	public function __construct(){
@@ -98,69 +99,57 @@ class cliente {
         return $this->estado;
     }
 
-
-
-
-    public function inserir_cliente(){
-        $nome = $_POST['nome'];
-    	$data = $_POST['data'];
-        $cpf = $_POST['cpf'];
-        $telefone = $_POST['telefone'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $complemento = $_POST['complemento'];
-        $cidade = $_POST['cidades'];
-        $estado = $_POST['estados'];
-		if($this->procura_cpf($cpf) == true){
-			$stmt = $this->banco->prepare("insert into cliente (nome_cliente,data_cadastro, cpf, telefone) values ( :NOME,:DATA,:CPF,:TELEFONE)");
-			$stmt1 = $this->banco->prepare("insert into endereco (nome_rua, numero_residencia, complemento_residencia) values ( :RUA,:NUMERO,:COMPLEMENTO)");
-			$stmt2 = $this->banco->prepare("insert into cidade (nome_cidade) values(:CIDADE");
-			$stmt3 = $this->banco->prepare("insert into pais_uf (nome estado) values(:ESTADO"); 
-			$stmt->bindParam(':NOME', $nome);
-			$stmt->bindParam(':DATA',$data);
-			$stmt->bindParam(':CPF', $cpf);	
-			$stmt->bindParam(':TELEFONE', $telefone);	
-			$stmt1->bindParam(':RUA', $rua);				
-			$stmt1->bindParam(':NUMERO', $numero);
-			$stmt1->bindParam(':COMPLEMENTO', $complemento);
-			$stmt2->bindParam(':CIDADE', $cidade);	
-			$stmt3->bindParam(':ESTADO', $estado);	
-			$stmt->execute();
-			$stmt1->execute();
-			$stmt2->execute();
-			$stmt3->execute();	
-
-			if ($stmt == true){
-			  echo "<script>('Dados cadastrados com sucesso!')</script>";
-		    } else{
-			    echo  "<script>('Erro ao cadastrar Dados!')</script>";
-		    }
-		} else {
-			echo "<script> alert('ja existe cpf cadastrado')</script>";			
-		}		
-}
-
-    public function listar(){
-        
+    public function setpais($pais){
+        $this->pais = $pais;
     }
 
-	public function procura_cpf($cpf){  
-	 
-	  $stmt = $this->banco->prepare("select cpf from cliente where cpf = :CPF");
-	  $stmt->bindParam(":CPF", $cpf);
-	  
-	  $stmt->execute();
-	  
-	if($stmt->rowCount() == 0 ) {
+    public function getpais(){
+        return $this->pais;
+    }
 
-		return true;
+    public function inserir_cliente(){
+        $nome = $this->getnome();
+        $cpf = $this->getcpf();
+        $telefone = $this->gettelefone();
+        $rua = $this->getrua();
+        $numero = $this->getnumero();
+        $complemento = $this->getcomplemento();
+        $pais = $this->getpais();
+        $estado = $this->getestado();
+        $cidade = $this->getcidade();
+        $data = $this->getdata();
 		
-	} else{
-		
-		return false;
-	}
+		$stmt = $this->banco->prepare("INSERT INTO pais_uf (nome_estado, nome_pais) VALUES (:ESTADO, :PAIS)");
+		$stmt1 = $this->banco->prepare("INSERT INTO cidade (nome_cidade, idPais_uf) VALUES (:CIDADE, :ESTADO)");
+		$stmt2 = $this->banco->prepare("INSERT INTO endereco (nome_rua, numero_residencia, complemento_residencia, idCidade) VALUES (:RUA, :NUMERO, :COMPLEMENTO, :CIDADE)");
+        $stmt3 = $this->banco->prepare("INSERT INTO cliente (nome_cliente, data_cadastro_cliente, cpf_cliente, telefone_cliente, idEndereco) VALUES(:NOME, :DATA, :CPF, :TELEFONE, :RUA)");
+        $stmt->bindParam(':ESTADO', $estado);
+        $stmt->bindParam(':PAIS', $pais);
+		$stmt1->bindParam(':PAIS', $pais);
+        $stmt1->bindParam(':CIDADE', $cidade);
+		$stmt2->bindParam(':RUA', $rua);
+		$stmt2->bindParam(':NUMERO', $numero);
+		$stmt2->bindParam(':COMPLEMENTO', $complemento);
+        $stmt2->bindParam(':CIDADE', $cidade);
+        $stmt3->bindParam(':NOME', $nome);
+        $stmt3->bindParam(':CPF', $cpf);
+        $stmt3->bindParam(':TELEFONE', $telefone);
+        $stmt3->bindParam(':DATA',$data);
+        $stmt3->bindParam(':RUA', $rua);
+		$stmt->execute();
+		$stmt1->execute();
+		$stmt2->execute();
+		$stmt3->execute();
+    }
 
-	}
+    public function listar(){
+        $stmt = $this->banco->prepare("SELECT * FROM cliente");
+        $stmt->execute();
+
+        $resultado = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
 
 }
 

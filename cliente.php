@@ -4,11 +4,10 @@ session_start();
 
 include ("html/layout-default/top.php");
 
-require ("classes/cliente.php");
+include ("classes/cliente.php");
 $cliente = new cliente();
+
 ?>
-
-
 
 <div id="dlt" style="display: none;">
   
@@ -37,7 +36,6 @@ $cliente = new cliente();
     </div> <!-- FINAL COLUNA -->
   </div> <!-- FINAL DA ROW -->
 
-
   <?php $cliente_view = $cliente->listar(); ?>
 
   <div class="row"> <!-- ROW TABLEA -->
@@ -47,16 +45,11 @@ $cliente = new cliente();
              <thead>
               <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Modelo</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Nº Chassi</th>
-                <th scope="col">Placa do carro</th>
-                <th scope="col">Cor do carro</th>
-                <th scope="col">Quilometragem</th>
-                <th scope="col">Valor Diária</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Data de cadastro</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Tipo</th>
                 <th scope="col">Status</th>
-                <th scope="col">Aquisição</th>
-                <th scope="col">Desc</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Deletar</th>
               </tr>
@@ -64,42 +57,30 @@ $cliente = new cliente();
 
             <tbody>
               
-              <?php 
-                  $buffer = '';
-              foreach ($cliente_view as $key => $value) {
-              
+              <?php
+
+                $buffer = '';
+
+                foreach ($cliente_view as $key => $value) {
                   $buffer.= '<tr>';
-                  $buffer.= '<td>'.$value['idVeiculo'].' </td>';
-                  $buffer.=' <td>'.$value['nome_modelo'].' </td>';
-                  $buffer.= '<td>'.$value['nome_marca'].' </td>';
-                  $buffer.= '<td>'.$value['numero_chassi'].'</td>';
-                  $buffer.= '<td>'.$value['placa_carro'].'</td>';
-                  $buffer.= ' <td>'.$value['cor_carro'].'</td>';
-                  $buffer.= '<td>'.$value['quilometragem_veiculo'].'</td>';
-                  $buffer.= ' <td>'.$value['valor_diaria'].'</td>';
-
-                  if($value['status_carro'] == 1 ){
-                   $buffer.= ' <td> Livre </td>';
-                  } else if($value['status_carro'] == 2){
-                    $buffer.= ' <td> Alugado </td>';
-                  } else if($value['status_carro'] == 3){
-                    $buffer.= ' <td> Inativo </td>';
+                  $buffer.= '<td>'.$value['idCliente'].' </td>';
+                  $buffer.=' <td>'.$value['nome_cliente'].' </td>';
+                  $buffer.= '<td>'.date('d/m/Y', strtotime($value['data_cadastro_cliente'])).' </td>';
+                  $buffer.= '<td>'.$value['cpf_cliente'].'</td>';
+                  if($buffer.= '<td>'.$value['tipo_cliente'].'</td>' == 1){
+                    $buffer.= '<td>FREE</td>';
+                  }else if($buffer.= '<td>'.$value['tipo_cliente'].'</td>' == 2){
+                    $buffer.= '<td>PREMIUM</td>';
                   }
-                 
-                  $data_formatada_view = date('d/m/Y', strtotime($value['data_aquisicao']));  
-                  $buffer.= ' <td>'.$data_formatada_view.'</td>';
-                  $buffer.= '<td> <button value="'.$value['idModelo'].'" class="desc_mod btn btn-primary"> Desc </button> </td>';
-                  $buffer.= '<td> <button value="'.$value['idVeiculo'].'" class="edt_veic btn btn-success"> Editar </button> </td>';
-                  $buffer.= '<td> <button value="'.$value['idVeiculo'].'" class="dlt_veic btn btn-danger"> Deletar </button> </td>';
+                  $buffer.= ' <td>'.$value['status_cliente'].'</td>';
+                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="btn btn-success"> Editar </button> </td>';
+                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="btn btn-danger"> Deletar </button> </td>';
                   $buffer.= '</tr>';
-                  
-              }
+                }
 
-              echo $buffer;
+                echo $buffer;
 
               ?>
-            
-
              
             </tbody>
 
@@ -135,19 +116,19 @@ $cliente = new cliente();
 
 });
 
-    $("#edt_veic_frm").click(function(){
+    $("#edt_client_frm").click(function(){
       editaVeiculo(valor_id);
     });
 
 
     //Envia POST ajax para cadastro 
-    $("#cadastrar_veic").click(function(){   
-      cadastrarVeiculo();
+    $("#bt-cadastrar").click(function(){   
+      cadastrarCliente();
     });
 
 
     // Adiciona conteudo no modal descrição via get.
-    $(".edt_veic").click(function(){
+    $(".edt_client").click(function(){
       valor_id = $(this).val();
       
        $('#edita_cadastro .modal-body').load('html/veiculo/frm-edita-cadastro.php?id='+valor_id,function(){
@@ -179,36 +160,32 @@ $cliente = new cliente();
      
      });   // FINAL ON CLICK
 
-
-    // FUNÇÃO CADASTRO DE VEICULO
-    function cadastrarVeiculo(){
+    // FUNÇÃO CADASTRO DE CLIENTE
+    function cadastrarCliente(){
       //Variaveis a serem enviadas
       var SENDVALUE = {
         edt: 0,        
-        marca: $("#marca_cadastro").val(),
-        modelo: $("#modelo_cadastro").val(),
-        chassi: $("#nrm_chassi_cadastro").val(),
-        cor: $("#cor_cadastro").val(),
-        diaria: $("#diaria_cadastro").val(),
-        placa: $("#placa_cadastro").val(),
-        quilometragem: $("#km_cadastro").val(),
-        valor_quilometragem: $("#km_valor_cadastro").val(),
-        desc: $("#desc_cadastro").val(),
-        outra_marca : $("#outra_marca").val(),
-        outro_modelo : $("#outro_modelo").val(),
-        data: $("#data_cadastro").val()
+        nome: $("#nome").val(),
+        cpf: $("#cpf").val(),
+        telefone: $("#telefone").val(),
+        rua: $("#rua").val(),
+        numero: $("#numero").val(),
+        complemento: $("#complemento").val(),
+        pais: $("#pais").val(),
+        estado: $("#estado").val(),
+        cidade: $("#cidade").val(),
+        data: $("#data").val(),
       }
 
       $.ajax({
           type: "POST",
-          url: "php/salvar-veiculo.php",
+          url: "php/salvar-cliente.php",
           data: SENDVALUE,
           success: function(dados){
             alert("Cadastro incluido com sucesso");
                $('#modal_cadastro').modal('hide');
                $('#modal_cadastro').find("input,textarea,select").val('');
               location.reload(); 
-              
             }
             
         });
@@ -268,26 +245,23 @@ $cliente = new cliente();
 
 <!-- ************************************************** MODAL ****************************************** -->
 
-<!-- Modal Cadastro veiculo -->
+<!-- Modal Cadastro cliente -->
 <div class="modal fade" id="modal_cadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar veículo</h5>
-       
+        <h5 class="modal-title" id="exampleModalLongTitle">Cadastrar cliente</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-       
         </button>
-      
       </div>
 
       <div class="modal-body">
-        <?php require_once ("html/veiculo/frm-veiculo-cadastro.php"); ?>
+        <?php require_once ("html/cliente/cadastro_cliente.php"); ?>
       </div>
 
       <div class="modal-footer">
-        <button id="cadastrar_veic" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="bt-cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
         <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
