@@ -20,14 +20,14 @@ label{
 	z-index:2;
 }
 #bannerImg{
-	background-color:rgb(8,8,8);
+	background-color:rgb(13,13,13);
 	width:125px;
 	height:80px;
 	position:absolute;
 	z-index:3;
 }
 #bannerImg:hover{
-	background-color:rgb(5,5,5);
+	background-color:rgb(10,10,10);
 }
 
 /* Formulário de Login */
