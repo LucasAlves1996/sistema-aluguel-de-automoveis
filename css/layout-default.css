@@ -192,15 +192,14 @@ label{
 #btn_cadastro:hover{
 	background-color:rgb(60,150,60);
 }
-#bt-cadastrar{
+#bt-cadastrar, #bt-update{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#bt-cadastrar:hover{
+#bt-cadastrar, #bt-update:hover{
 	background-color:rgb(60,150,60);
 }
-
 #bt-cancelar{
 	background-color:rgb(180,50,50);
 	border:none;
@@ -211,6 +210,9 @@ label{
 }
 #modal_cadastro{
 	color:rgb(0,0,0);
+}
+#edita_cadastro{
+    color: rgb(0,0,0) !important;
 }
 .responsive-table{
 	overflow-x:auto;

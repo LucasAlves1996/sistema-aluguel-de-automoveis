@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 	include "../classes/cliente.php";
 
 	$cliente = new cliente();
@@ -8,13 +10,12 @@
 	$cliente->setdata($_POST['data']);
 	$cliente->setcpf($_POST['cpf']);
 	$cliente->settelefone($_POST['telefone']);
-	$cliente->setrua($_POST['rua']);
-	$cliente->setnumero($_POST['numero']);
-	$cliente->setcomplemento($_POST['complemento']);
-	$cliente->setcidade($_POST['cidade']);
-	$cliente->setestado($_POST['estado']);
-	$cliente->setpais($_POST['pais']);
+	$cliente->setendereco($_POST['rua']." ".$_POST['numero'].", ".$_POST['complemento']." - ".$_POST['cidade']." - ".$_POST['estado']." - ".$_POST['pais']);
 
-	$cliente->inserir_cliente();
+	if($_POST['form'] == "cadastro"){
+		$cliente->inserir_cliente();
+	}else if($_POST['form'] == "update"){
+		$cliente->update_cliente($_SESSION['id']);
+	}
 
 ?>

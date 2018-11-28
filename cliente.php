@@ -72,9 +72,13 @@ $cliente = new cliente();
                   }else if($buffer.= '<td>'.$value['tipo_cliente'].'</td>' == 2){
                     $buffer.= '<td>PREMIUM</td>';
                   }
-                  $buffer.= ' <td>'.$value['status_cliente'].'</td>';
-                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="btn btn-success"> Editar </button> </td>';
-                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="btn btn-danger"> Deletar </button> </td>';
+                  if($buffer.= '<td>'.$value['status_cliente'].'</td>' == 1){
+                    $buffer.= '<td>Ativo</td>';
+                  }else if($buffer.= '<td>'.$value['status_cliente'].'</td>' == 0){
+                    $buffer.= '<td>Desativado</td>';
+                  }
+                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="edt_client btn btn-success"> Editar </button> </td>';
+                  $buffer.= '<td> <button value="'.$value['idCliente'].'" class="dlt_client btn btn-danger"> Deletar </button> </td>';
                   $buffer.= '</tr>';
                 }
 
@@ -89,8 +93,6 @@ $cliente = new cliente();
 
   </div><!-- FINAL DA ROW -->
 </div>
-
-
 
 <script type="text/javascript">
 
@@ -120,40 +122,33 @@ $cliente = new cliente();
       editaVeiculo(valor_id);
     });
 
-
     //Envia POST ajax para cadastro 
     $("#bt-cadastrar").click(function(){   
       cadastrarCliente();
     });
 
+    //Envia POST ajax para update 
+    $("#bt-update").click(function(){   
+      updateCliente();
+    });
 
     // Adiciona conteudo no modal descrição via get.
     $(".edt_client").click(function(){
       valor_id = $(this).val();
       
-       $('#edita_cadastro .modal-body').load('html/veiculo/frm-edita-cadastro.php?id='+valor_id,function(){
+       $('#edita_cadastro .modal-body').load('html/cliente/edita_cliente.php?id='+valor_id,function(){
          $('#edita_cadastro').modal({show:true});
      
     }); // FINAL LOAD
      });   // FINAL ON CLICK
 
 
-    $(".desc_mod").click(function(){
-      valor = $(this).val();
-      
-       $('#desc_modal .modal-body').load('html/veiculo/desc-modelo.php?id='+valor,function(){
-         $('#desc_modal').modal({show:true});
-     
-    }); // FINAL LOAD
-     });   // FINAL ON CLICK
-
-
-      $(".dlt_veic").click(function(){
+      $(".dlt_client").click(function(){
       valor = $(this).val();
       console.log(valor);
-        var r = confirm("Você tem certeza que deseja deletar esse veiculo?");
+        var r = confirm("Você tem certeza que deseja deletar este cliente?");
            if (r == true) {               
-               $("#dlt").load('html/veiculo/deleta-veiculo.php?id='+valor);                
+               $("#dlt").load('html/cliente/deleta_cliente.php?id='+valor);                
                 }       
      
      // FINAL LOAD
@@ -164,7 +159,8 @@ $cliente = new cliente();
     function cadastrarCliente(){
       //Variaveis a serem enviadas
       var SENDVALUE = {
-        edt: 0,        
+        edt: 0,
+        form: "cadastro",        
         nome: $("#nome").val(),
         cpf: $("#cpf").val(),
         telefone: $("#telefone").val(),
@@ -191,57 +187,41 @@ $cliente = new cliente();
         });
      }  //FINAL DA FUNLÇÃO
 
-
-     function editaVeiculo($valor){
-          //Variaveis a serem enviadas
-     
-      
-      console.log($valor);
-
+     // FUNÇÃO UPDATE DO CLIENTE
+    function updateCliente(){
+      //Variaveis a serem enviadas
       var SENDVALUE = {
         edt: 1,
-        id_edita: $valor,
-        edt_marca: $("#edt_marca_cadastro").val(),
-        edt_modelo: $("#edt_modelo_cadastro").val(),
-        edt_chassi: $("#edt_nrm_chassi_cadastro").val(),
-        edt_cor: $("#edt_cor_cadastro").val(),
-        edt_diaria: $("#edt_diaria_cadastro").val(),
-        edt_placa: $("#edt_placa_cadastro").val(),
-        edt_quilometragem: $("#edt_km_cadastro").val(),
-        edt_valor_quilometragem: $("#edt_km_valor_cadastro").val(),
-        edt_desc: $("#edt_desc_cadastro").val(),
-        edt_outra_marca : $("#edt_outra_marca").val(),
-        edt_outro_modelo : $("#edt_outro_modelo").val(),
-        edt_data: $("#edt_data_cadastro").val(),
-        edt_status: $("#edt_status").val()
+        form: "update",        
+        nome: $("#nome").val(),
+        cpf: $("#cpf").val(),
+        telefone: $("#telefone").val(),
+        rua: $("#rua").val(),
+        numero: $("#numero").val(),
+        complemento: $("#complemento").val(),
+        pais: $("#pais").val(),
+        estado: $("#estado").val(),
+        cidade: $("#cidade").val(),
+        data: $("#data").val(),
       }
 
       $.ajax({
           type: "POST",
-          url: "php/salvar-veiculo.php",
+          url: "php/salvar-cliente.php",
           data: SENDVALUE,
           success: function(dados){
-            alert("Veiculo editado com sucesso");
-               $('#edita_cadastro').modal('hide');
+            alert("Cliente atualizado com sucesso");
+               $('#modal_cadastro').modal('hide');
+               $('#modal_cadastro').find("input,textarea,select").val('');
               location.reload(); 
-              
             }
             
         });
      }  //FINAL DA FUNLÇÃO
-         
-          
-          
 
-  }); // Final dom
-
-
+  });
 
 </script>
-
-  
-
-
 
 <!-- ************************************************** MODAL ****************************************** -->
 
@@ -268,40 +248,13 @@ $cliente = new cliente();
   </div>
 </div>
 
-
-
-
- <!-- MODAL DESCRIÇÃO --> 
-<div class="modal fade" id="desc_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Descrição modelo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">                    
-
-           
-       
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- MODAL EDITA CADASTRO -->
+<!-- MODAL EDITA CLIENTE -->
 
 <div class="modal fade" id="edita_cadastro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edita veículo</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Edita cliente</h5>
        
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -315,8 +268,8 @@ $cliente = new cliente();
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button id="edt_veic_frm" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="bt-update" type="button" class="btn btn-primary">Confirmar</button>
+        <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
