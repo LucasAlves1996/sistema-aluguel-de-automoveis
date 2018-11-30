@@ -7,11 +7,7 @@ class cliente {
     private $data;
     private $cpf;
     private $telefone;
-    private $rua;
-    private $numero;
-    private $complemento;
-    private $cidade;
-    private $estado;
+    private $endereco;
 	private $banco;
 	
 	public function __construct(){
@@ -56,110 +52,127 @@ class cliente {
         return $this->telefone;
     }
 
-
-    public function setrua($rua){
-        $this->rua = $rua;
+    public function setendereco($endereco){
+        $this->endereco = $endereco;
     }
 
-    public function getrua(){
-        return $this->rua;
+    public function getendereco(){
+        return $this->endereco;
     }
 
-    public function setnumero($numero){
-        $this->numero = $numero;
-    }
-
-    public function getnumero(){
-        return $this->numero;
-    }
-
-
-    public function setcomplemento($complemento){
-        $this->complemento = $complemento;
-    }
-
-    public function getcomplemento(){
-        return $this->complemento = $complemento;
-    }
-
-    public function setcidade($cidade){
-        $this->cidade = $cidade;
-    }
-
-    public function getcidade(){
-        return $this->cidade;
-    }
-
-    public function setestado($estado){
-        $this->estado = $estado;
-    }
-
-    public function getestado(){
-        return $this->estado;
-    }
-
-
-
-
-public function inserir_cliente(){
-    $nome = $_POST['nome'];
-	$data = $_POST['data'];
-    $cpf = $_POST['cpf'];
-    $telefone = $_POST['telefone'];
-    $rua = $_POST['rua'];
-    $numero = $_POST['numero'];
-    $complemento = $_POST['complemento'];
-    $cidade = $_POST['cidades'];
-    $estado = $_POST['estados'];
-			if($this->procura_cpf($cpf) == true){
-				$stmt = $this->banco->prepare("insert into cliente (nome_cliente,data_cadastro, cpf, telefone) values ( :NOME,:DATA,:CPF,:TELEFONE)");
-				$stmt1 = $this->banco->prepare("insert into endereco (nome_rua, numero_residencia, complemento_residencia) values ( :RUA,:NUMERO,:COMPLEMENTO)");
-				$stmt2 = $this->banco->prepare("insert into cidade (nome_cidade) values(:CIDADE");
-				$stmt3 = $this->banco->prepare("insert into pais_uf (nome estado) values(:ESTADO"); 
-				$stmt->bindParam(':NOME', $nome);
-				$stmt->bindParam(':DATA',$data);
-				$stmt->bindParam(':CPF', $cpf);	
-				$stmt->bindParam(':TELEFONE', $telefone);	
-				$stmt1->bindParam(':RUA', $rua);				
-				$stmt1->bindParam(':NUMERO', $numero);
-				$stmt1->bindParam(':COMPLEMENTO', $complemento);
-				$stmt2->bindParam(':CIDADE', $cidade);	
-				$stmt3->bindParam(':ESTADO', $estado);	
-				$stmt->execute();
-				$stmt1->execute();
-				$stmt2->execute();
-				$stmt3->execute();
-				
-
-			if ($stmt == true){
-			  echo "<script>('Dados cadastrados com sucesso!')</script>";
-		    } else{
-			    echo  "<script>('Erro ao cadastrar Dados!')</script>";
-		    }
-			} else {
-				echo "<script> alert('ja existe cpf cadastrado')</script>";
-						
-			}
+    public function inserir_cliente(){
+        $nome = $this->getnome();
+        $cpf = $this->getcpf();
+        $telefone = $this->gettelefone();
+        $endereco = $this->getendereco();
+        $data = $this->getdata();
 		
+        $stmt = $this->banco->prepare("INSERT INTO cliente (nome_cliente, data_cadastro_cliente, cpf_cliente, telefone_cliente, endereco) VALUES(:NOME, :DATA, :CPF, :TELEFONE, :ENDERECO)");
+		       
+        $stmt->bindParam(':NOME', $nome);
+        $stmt->bindParam(':DATA',$data);
+        $stmt->bindParam(':CPF', $cpf);
+        $stmt->bindParam(':TELEFONE', $telefone);
+        $stmt->bindParam(':ENDERECO', $endereco);
+        
+		$stmt->execute();
+    }
 
-}
-	public function procura_cpf($cpf){  
-	 
-	  $stmt = $this->banco->prepare("select cpf from cliente where cpf = :CPF");
-	  $stmt->bindParam(":CPF", $cpf);
-	  
-	  $stmt->execute();
-	  
-	if($stmt->rowCount() == 0 ) {
+    public function listar(){
+        $stmt = $this->banco->prepare("SELECT * FROM cliente");
+        $stmt->execute();
 
-		return true;
-		
-	} else{
-		
-		return false;
-	}
+        $resultado = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
+        return $resultado;
+    }
 
-	}
+    public function deletebyid($id){
+        $stmt = $this->banco->prepare("DELETE FROM cliente where idCliente = :ID");
+
+        $stmt->bindParam(":ID",$id);
+        $stmt->execute();
+    }
+
+    public function selectbyid($id){
+        $stmt = $this->banco->prepare("SELECT * FROM cliente where idCliente = :ID");
+
+        $stmt->bindParam(":ID",$id);
+        $stmt->execute();
+
+        $resultado = $stmt->fetchALL(PDO::FETCH_ASSOC);
+
+        return $resultado;
+    }
+
+    public function update_cliente($id){
+        $nome = $this->getnome();
+        $cpf = $this->getcpf();
+        $telefone = $this->gettelefone();
+        $endereco = $this->getendereco();
+        $data = $this->getdata();
+
+        $stmt = $this->banco->prepare("UPDATE cliente
+            SET
+            nome_cliente = :NOME,
+            data_cadastro_cliente = :DATA,
+            cpf_cliente = :CPF,
+            telefone_cliente = :TELEFONE,
+            endereco = :ENDERECO
+            WHERE idCliente = :ID");
+
+        $stmt->bindParam(':ID', $id);
+        $stmt->bindParam(':NOME', $nome);
+        $stmt->bindParam(':DATA', $data);
+        $stmt->bindParam(':CPF', $cpf);
+        $stmt->bindParam(':TELEFONE', $telefone);
+        $stmt->bindParam(':ENDERECO', $endereco);
+        
+        $stmt->execute();
+        
+    }
+
+    /*public function update_cliente($id){
+        $nome = $this->getnome();
+        $cpf = $this->getcpf();
+        $telefone = $this->gettelefone();
+        $endereco = $this->getendereco();
+        $data = $this->getdata();
+
+        $stmt1 = $this->banco->prepare("UPDATE cliente SET nome_cliente = :NOME WHERE idCliente = :ID");
+        $stmt2 = $this->banco->prepare("UPDATE cliente SET data_cadastro_cliente = :DATA WHERE idCliente = :ID");
+        $stmt3 = $this->banco->prepare("UPDATE cliente SET cpf_cliente = :CPF WHERE idCliente = :ID");
+        $stmt4 = $this->banco->prepare("UPDATE cliente SET telefone_cliente = :TELEFONE WHERE idCliente = :ID");
+        $stmt5 = $this->banco->prepare("UPDATE cliente SET endereco = :ENDERECO WHERE idCliente = :ID");
+
+        $stmt1->bindParam(':ID', $id);
+        $stmt1->bindParam(':NOME', $nome);
+        $stmt2->bindParam(':ID', $id);
+        $stmt2->bindParam(':DATA', $data);
+        $stmt3->bindParam(':ID', $id);
+        $stmt3->bindParam(':CPF', $cpf);
+        $stmt4->bindParam(':ID', $id);
+        $stmt4->bindParam(':TELEFONE', $telefone);
+        $stmt5->bindParam(':ID', $id);
+        $stmt5->bindParam(':ENDERECO', $endereco);
+        
+        if($nome != ""){
+            $stmt1->execute();
+        }
+        if($data != ""){
+            $stmt2->execute();
+        }
+        if($cpf != ""){
+            $stmt3->execute();
+        }
+        if($telefone != ""){
+            $stmt4->execute();
+        }
+        if($endereco != ""){
+            $stmt5->execute();
+        }
+        
+    }*/
 
 }
 

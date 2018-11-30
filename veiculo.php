@@ -2,6 +2,11 @@
 
 session_start();
 
+if(!isset($_SESSION['user'])){
+	$_SESSION['acessoSemLogin'] = "Para acessar esta página você deve fazer login!";
+	header('Location: index.php');
+}
+
 include ("html/layout-default/top.php");
 
 require ("classes/automovel.php");
@@ -159,7 +164,7 @@ $veiculo = new automovel();
 
 
     //Envia POST ajax para cadastro 
-    $("#cadastrar_veic").click(function(){   
+    $("#bt-cadastrar").click(function(){   
       cadastrarVeiculo();
     });
 
@@ -305,7 +310,7 @@ $veiculo = new automovel();
       </div>
 
       <div class="modal-footer">
-        <button id="cadastrar_veic" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="bt-cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
         <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>

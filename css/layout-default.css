@@ -20,14 +20,14 @@ label{
 	z-index:2;
 }
 #bannerImg{
-	background-color:rgb(8,8,8);
+	background-color:rgb(13,13,13);
 	width:125px;
 	height:80px;
 	position:absolute;
 	z-index:3;
 }
 #bannerImg:hover{
-	background-color:rgb(5,5,5);
+	background-color:rgb(10,10,10);
 }
 
 /* Formulário de Login */
@@ -192,15 +192,14 @@ label{
 #btn_cadastro:hover{
 	background-color:rgb(60,150,60);
 }
-#cadastrar_veic{
+#bt-cadastrar, #bt-update{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#cadastrar_veic:hover{
+#bt-cadastrar, #bt-update:hover{
 	background-color:rgb(60,150,60);
 }
-
 #bt-cancelar{
 	background-color:rgb(180,50,50);
 	border:none;
@@ -211,6 +210,9 @@ label{
 }
 #modal_cadastro{
 	color:rgb(0,0,0);
+}
+#edita_cadastro{
+    color: rgb(0,0,0) !important;
 }
 .responsive-table{
 	overflow-x:auto;
