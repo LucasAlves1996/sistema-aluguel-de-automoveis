@@ -7,8 +7,6 @@ include ("html/layout-default/top.php");
 require ("classes/automovel.php");
 $veiculo = new automovel();
 
-session_start();
-
 if(!isset($_SESSION['user'])){
 	$_SESSION['acessoSemLogin'] = "Para acessar esta página você deve fazer login!";
 	header('Location: index.php');
@@ -41,24 +39,8 @@ if(!isset($_SESSION['user'])){
         <div class="form-group">          
           <label for="pesquisa_carro">Pesquisar: </label>
           <input type="text" class="form-control" id="pesquisa_carro">       
-          
          </div>
       </div> <!-- FINAL COLUNA -->
-
-      <div class="col-md-2">
-        <label for="select_pesquisa">Filtro: </label>
-      <div>
-        <select id="select_pesquisa" class="form-control">
-          <option>ID</option>
-          <option>Modelo</option>
-          <option>Marca</option>
-          <option>Placa do Carro</option>
-          <option>Nº Chassi</option>
-          <option>Valor Diária</option>
-          <option>Data</option>
-        </select>
-        </div>
-      </div>
     </div> <!-- FINAL DA ROW -->
 
 
@@ -162,13 +144,13 @@ if(!isset($_SESSION['user'])){
 
 });
 
-    $("#edt_veic_frm").click(function(){
+    $("#bt-update").click(function(){
       editaVeiculo(valor_id);
     });
 
 
     //Envia POST ajax para cadastro 
-    $("#cadastrar_veic").click(function(){   
+    $("#bt-cadastrar").click(function(){   
       cadastrarVeiculo();
     });
 
@@ -386,7 +368,7 @@ if(!isset($_SESSION['user'])){
       </div>
 
       <div class="modal-footer">
-        <button id="cadastrar_veic" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="bt-cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
         <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
@@ -440,8 +422,8 @@ if(!isset($_SESSION['user'])){
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button id="edt_veic_frm" type="button" class="btn btn-primary">Finalizar</button>
+        <button id="bt-update" type="button" class="btn btn-primary">Confirmar</button>
+        <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

@@ -48,7 +48,7 @@ if(!isset($_SESSION['user'])){
 
   <div class="col-md-2 mt-4">
         <div class="form-group">          
-          <h3 style="color: yellow;">Pesquisar: </h3>
+          <h3>Pesquisar:</h3>
           <input type="text" class="form-control" id="pesquisa_aluguel">       
           
          </div>
@@ -64,7 +64,7 @@ if(!isset($_SESSION['user'])){
 
 
  <div class="row"> <!-- ROW TABLEA -->
-    <div class="col-md-12 mt-4">
+    <div class="col-md-12 mt-4 responsive-table">
 
           <table id="table_aluguel" class="table table-dark">
              <thead>
@@ -372,7 +372,7 @@ if(!isset($_SESSION['user'])){
           data: SENDVALUE,
           success: function(dados){
             if(dados === ""){
-              alert("Alguel efetuado com sucesso");
+              alert("Aluguel efetuado com sucesso");
               location.reload(); 
                $('#cadastro_aluguel').modal('hide');
              } else{
@@ -436,8 +436,8 @@ if(!isset($_SESSION['user'])){
         <?php require_once "html/aluguel/frm-aluguel.php"; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-        <button type="button" id="envia_alg" class="btn btn-primary">Alugar</button>
+        <button id="envia_alg" type="button" class="btn btn-primary">Alugar</button>
+        <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -460,8 +460,8 @@ if(!isset($_SESSION['user'])){
         <?php require_once "html/aluguel/frm-edita-aluguel.php"; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-        <button type="button" id="btn_alg" class="btn btn-primary">Finalizar</button>
+        <button id="btn_alg" type="button" class="btn btn-primary">Finalizar</button>
+        <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

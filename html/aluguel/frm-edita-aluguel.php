@@ -1,5 +1,5 @@
 <?php 
- require_once $_SERVER['DOCUMENT_ROOT'] . "/aluguel/classes/aluguel.php";
+ require_once $_SERVER['DOCUMENT_ROOT'] . "/sistema-de-aluguel-de-automoveis/classes/aluguel.php";
   $aluga = new aluguel();
 
 

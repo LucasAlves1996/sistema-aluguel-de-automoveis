@@ -1,6 +1,6 @@
 <?php
 
- require_once $_SERVER['DOCUMENT_ROOT'] . "/aluguel/classes/automovel.php";
+ require_once $_SERVER['DOCUMENT_ROOT'] . "/sistema-de-aluguel-de-automoveis/classes/automovel.php";
 
  $carro = new automovel(); 
 

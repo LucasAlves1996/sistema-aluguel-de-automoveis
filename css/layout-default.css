@@ -183,21 +183,21 @@ label{
 	box-shadow:0px 0px 200px 0px rgb(50,50,50);
 }
 
-/* Administrar automóveis */
-#btn_cadastro{
+/* Buttons */
+#btn_cadastro, #btn_cadastro_aluguel{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#btn_cadastro:hover{
+#btn_cadastro, #btn_cadastro_aluguel:hover{
 	background-color:rgb(60,150,60);
 }
-#bt-cadastrar, #bt-update{
+#bt-cadastrar, #bt-update, #btn_alg, #envia_alg{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#bt-cadastrar, #bt-update:hover{
+#bt-cadastrar, #bt-update, #btn_alg, #envia_alg:hover{
 	background-color:rgb(60,150,60);
 }
 #bt-cancelar{
@@ -208,12 +208,24 @@ label{
 #bt-cancelar:hover{
 	background-color:rgb(205,60,60);
 }
-#modal_cadastro{
+#filtro{
+	border-color:rgb(50,125,50);
+	color:rgb(50,125,50);
+}
+#filtro:hover{
+	background-color:rgb(50,125,50);
+	color:rgb(255,255,255);
+}
+
+/* Modal */
+#modal_cadastro, #desc_modal{
 	color:rgb(0,0,0);
 }
-#edita_cadastro{
+#edita_cadastro, #edita_aluguel, #cadastro_aluguel{
     color: rgb(0,0,0) !important;
 }
+
+/* Table */
 .responsive-table{
 	overflow-x:auto;
 }
