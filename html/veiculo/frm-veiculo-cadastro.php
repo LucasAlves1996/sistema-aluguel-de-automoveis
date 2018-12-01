@@ -13,7 +13,7 @@ $carro = new automovel();
   			  <label for="marca_cadastro">Marca</label>
   			  
           <select id="marca_cadastro" class="form-control" ">
-             <option selected disabled hidden>Escolha a marca</option>
+             <option value="default" selected hidden>Escolha a marca</option>
   			   <?php 
            $marca = $carro->listaMarca();
            echo $marca;
@@ -24,13 +24,15 @@ $carro = new automovel();
            <option value="666"> Outra </option>
   			  </select> 
         
-          <div class="form-group" id="div_marca" style="display: none;">
+          
+       
+  			</div>
+
+        <div class="form-group" id="div_marca" style="display: none;">
           
           <label for="outra_marca">Nome da marca: </label>
           <input type="text" class="form-control" id="outra_marca">
           </div>
-       
-  			</div>
 			
 			<div class="form-group">
    				<label for="nrm_chassi">Número do chassi</label>
@@ -56,13 +58,14 @@ $carro = new automovel();
 		</div> <!--Final coluna 1 -->
 
 		<div class="col-md-6">
-			<div class="form-group">    
+			
+      <div class="form-group">    
   			  <label for="modelo_cadastro">Modelo</label>
   			  <select class="form-control" id="modelo_cadastro">
-            <option value="default" selected disabled hidden>Escolha seu modelo</option>
+            <option value="default" selected hidden>Escolha seu modelo</option>
   			     <?php             
                $modelo = $carro->listaModelo();
-                echo $modelo;
+              
                foreach ($modelo as $key => $value) {
                 $key++;
                echo '<option data-value="'.$value['idMarca'].'" value="'.$value['idModelo'].'">'.$value['nome_modelo'].'</option>';
@@ -71,6 +74,13 @@ $carro = new automovel();
   			    
   			    <option value="666">Outro</option>
   			  </select> 
+
+    
+        
+          </div>
+
+
+              <div classs="form-group">
 
             <div id="div_modelo"style="display: none;">
               
@@ -140,6 +150,7 @@ $carro = new automovel();
     $("#km_valor_cadastro").mask("999,99");
     $("#placa_cadastro").mask("AAA-9999");
     $('#data_cadastro').mask('00/00/0000');
+    $('#nrm_chassi_cadastro').mask('99999999999999999');
 
     //TRATATIVA PARA ADICIONAR MARCA OU MODELO
       var marca = $(this).val();

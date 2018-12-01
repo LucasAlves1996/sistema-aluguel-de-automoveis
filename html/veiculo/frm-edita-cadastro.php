@@ -1,8 +1,10 @@
 <?php
 
- require_once $_SERVER['DOCUMENT_ROOT'] . "./classes/automovel.php";
+ require_once $_SERVER['DOCUMENT_ROOT'] . "/aluguel/classes/automovel.php";
 
  $carro = new automovel(); 
+
+ $carro->busca($_GET['id']);
 
  ?>
 
@@ -37,7 +39,7 @@
 			<div class="form-group">
    				<label for="edt_nrm_chassi">Número do chassi</label>
    				
-   				<input type="text" class="form-control" id="edt_nrm_chassi_cadastro">
+   				<input type="text" class="form-control" id="edt_nrm_chassi">
   			</div>
 
 
@@ -150,13 +152,25 @@
 <script type="text/javascript">
   
   $(document).ready(function() {
+    //remove valores padrões do select
+  $("select option").removeAttr('selected');
+    
 
     // MASK
-
-    $("#edt_diaria_cadastro").mask("999,99");
+   $("#edt_diaria_cadastro").mask("999,99");
     $("#edt_km_valor_cadastro").mask("999,99");
     $("#edt_placa_cadastro").mask("AAA-9999");
     $('#edt_data_cadastro').mask('00/00/0000');
+  
+
+    // $modelo = $this->getModelo();
+    // $chassi = $this->getNumero_chassi();
+    
+  
+    // $km = $this->getQuilometragem_inicial();
+    // $valor_km = $this->getValor_km();       
+    // $data = $this->getData();
+
 
     //TRATATIVA PARA ADICIONAR MARCA OU MODELO
       var marca = $(this).val();
@@ -223,10 +237,34 @@
                 });
                 $("#edt_cor_cadastro").html(options);
              
-
+            $('#edt_cor_cadastro option[value="<?php echo $carro->getCor_carro(); ?>"]').prop({defaultSelected: true});
          });
 
           
+    //values
+   
+
+
+
+    $("#edt_nrm_chassi").val("<?php echo $carro->getNumero_chassi(); ?>");
+    $("#edt_placa_cadastro").val("<?php echo $carro->getPlaca_carro(); ?>");    
+    $("#edt_diaria_cadastro").val("<?php echo $carro->getValor_diaria(); ?>");
+    $("#edt_data_cadastro").val("<?php echo $carro->getData(); ?>");
+    $("#edt_km_valor_cadastro").val("<?php echo $carro->getValor_km(); ?>");
+    $("#edt_diaria_cadastro").val("<?php echo $carro->getValor_diaria(); ?>");
+
+    $("#edt_km_cadastro").val("<?php echo $carro->getQuilometragem_inicial(); ?>");
+
+
+    //Valores Select
+       $('#edt_marca_cadastro option[value="<?php echo $carro->getMarca(); ?>"]').prop({defaultSelected: true});
+      $('#edt_modelo_cadastro option[value="<?php echo $carro->getModelo(); ?>"]').prop({defaultSelected: true});
+
+       $('#edt_status option[value="<?php echo $carro->getStatus(); ?>"]').prop({defaultSelected: true});
+    
+    
+     
+   
 
 
 

@@ -39,12 +39,12 @@ class automovel {
 
 		public function getData()
 	{
-	    return $this->marca;
+	    return $this->data;
 	}
 	
-	public function setData($marca)
+	public function setData($data)
 	{
-	    return $this->marca = $marca;
+	    return $this->data = $data;
 	}
 	
 
@@ -387,7 +387,16 @@ class automovel {
 												
 
 	public function busca($id){ // EM PRODU~ÇÃO
-		$stmt = $this->banco->prepare("SELECT * FROM veiculo where idVeiculo = :ID");
+	$stmt = $this->banco->prepare("   
+	SELECT 
+	    v.*, mc.idMarca, mc.nome_marca,mm.nome_modelo
+	FROM
+	    veiculo v
+        INNER JOIN
+    		modelo_carro mm ON v.idModelo = mm.idModelo
+        INNER JOIN
+    		marca_carro mc ON mc.idMarca = mm.idMarca
+    	WHERE idVeiculo = :ID");
 
 		$stmt->bindParam(":ID", $id);
 
@@ -396,14 +405,24 @@ class automovel {
 		$resultado = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
 		foreach ($resultado as $key => $value) {
-			$data_formatada = date('Y-m-d', strtotime($value['data_aquisicao']));
+		   $data_formatada = date('d/m/Y', strtotime($value['data_aquisicao']));	
 
-			$this->setData($data_formatada);
-
+		   	$this->setData($data_formatada);
+			$this->setNumero_chassi($value['numero_chassi']);
+			$this->setModelo($value['idModelo']);
+			$this->setPlaca_carro($value['placa_carro']);
+			$this->setCor_carro($value['cor_carro']);
+			$this->setValor_diaria($value['valor_diaria']);
+			$this->setStatus($value['status_carro']);
+			$this->setQuilometragem_inicial($value['quilometragem_veiculo']);
+			$this->setValor_km($value['valor_km']);
+			$this->setMarca($value['idMarca']);
 		}
+		
+	}
 
-	}													
-	} // Final da classe
+
+} // Final da classe
 
 
 ?>

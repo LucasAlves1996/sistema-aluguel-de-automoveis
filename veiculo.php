@@ -2,15 +2,18 @@
 
 session_start();
 
+include ("html/layout-default/top.php");
+
+require ("classes/automovel.php");
+$veiculo = new automovel();
+
+session_start();
+
 if(!isset($_SESSION['user'])){
 	$_SESSION['acessoSemLogin'] = "Para acessar esta página você deve fazer login!";
 	header('Location: index.php');
 }
 
-include ("html/layout-default/top.php");
-
-require ("classes/automovel.php");
-$veiculo = new automovel();
 ?>
 
 
@@ -154,7 +157,8 @@ $veiculo = new automovel();
     //Limpa os campos do modal pós cadastro
 
     $('#modal_cadastro').on('hidden.bs.modal', function () {
-    $(this).find("input,textarea,select").val('').end();
+    $(this).find("input,textarea").val('').end();
+    $(this).find('select').val('0');
 
 });
 
@@ -164,7 +168,7 @@ $veiculo = new automovel();
 
 
     //Envia POST ajax para cadastro 
-    $("#bt-cadastrar").click(function(){   
+    $("#cadastrar_veic").click(function(){   
       cadastrarVeiculo();
     });
 
@@ -204,7 +208,79 @@ $veiculo = new automovel();
 
 
     // FUNÇÃO CADASTRO DE VEICULO
+     function formataData($data){
+
+          var data_formatada;        
+
+          data_formatada = $data.split("/").reverse().join("-");
+
+          data_formatada = Date.parse(data_formatada);
+
+          data_formatada = new Date(data_formatada);
+
+          return data_formatada.getTime();
+
+    }
+
     function cadastrarVeiculo(){
+
+        var data_cadastro = $("#data_cadastro").val();         
+        var chassi = $("#nrm_chassi_cadastro").val();
+        var placa = $("#placa_cadastro").val();
+
+          if($("#outra_marca").is(":hidden")){
+            if($("#marca_cadastro").val() == 'default' ){
+            return alert("Selecione uma marca");
+          }
+        }
+
+          if($("#outro_modelo").is(":hidden")){
+            if($("#modelo_cadastro").val() == 'default' ){
+            return alert("Selecione um modelo");
+          }
+        }
+          
+
+          if(chassi.length != 17){
+            return alert("o Chassi deve possuir 17 números");
+          }
+
+
+          if( data_cadastro.length != 10){
+            return alert("Insira uma data válida");         
+            }
+
+            if($("#diaria_cadastro").val() == ""){
+              return alert("informe um valor para a diaria");
+            } 
+
+             if(placa.length != 8){
+              return alert("Informe a placa completa");
+            } 
+
+
+         data_cadastro =  formataData(data_cadastro);
+          
+         if (isNaN(data_cadastro)){
+            return alert("Insira uma data válida");
+         }
+
+         if($("#cor_cadastro").val() == "" ){
+          return alert("escolha uma cor");
+         }
+
+        if( $("#outra_marca").is(":visible") ){
+          if( $("#outra_marca").val() == "") {
+            return alert("De o nome para a marca");
+          }
+        }
+
+         if( $("#outro_modelo").is(":visible") ){
+          if ( $("#outro_modelo").val() == "") {
+            return alert("De o nome para a modelo");
+          }
+        }
+
       //Variaveis a serem enviadas
       var SENDVALUE = {
         edt: 0,        
@@ -249,7 +325,7 @@ $veiculo = new automovel();
         id_edita: $valor,
         edt_marca: $("#edt_marca_cadastro").val(),
         edt_modelo: $("#edt_modelo_cadastro").val(),
-        edt_chassi: $("#edt_nrm_chassi_cadastro").val(),
+        edt_chassi: $("#edt_nrm_chassi").val(),
         edt_cor: $("#edt_cor_cadastro").val(),
         edt_diaria: $("#edt_diaria_cadastro").val(),
         edt_placa: $("#edt_placa_cadastro").val(),
@@ -310,7 +386,7 @@ $veiculo = new automovel();
       </div>
 
       <div class="modal-footer">
-        <button id="bt-cadastrar" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="cadastrar_veic" type="button" class="btn btn-primary">Cadastrar</button>
         <button id="bt-cancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
@@ -365,7 +441,7 @@ $veiculo = new automovel();
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button id="edt_veic_frm" type="button" class="btn btn-primary">Cadastrar</button>
+        <button id="edt_veic_frm" type="button" class="btn btn-primary">Finalizar</button>
       </div>
     </div>
   </div>
