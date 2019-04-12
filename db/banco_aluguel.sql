@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01-Dez-2018 às 06:21
+-- Generation Time: 03-Dez-2018 às 02:14
 -- Versão do servidor: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -40,15 +40,17 @@ CREATE TABLE `aluguel` (
   `idMtd_pagamento` int(11) NOT NULL,
   `nota_aluguel` varchar(45) DEFAULT NULL,
   `idCliente` int(11) NOT NULL,
-  `status_pagamento` int(11) DEFAULT NULL
+  `status_pagamento` int(11) DEFAULT NULL,
+  `data_entrega` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `aluguel`
 --
 
-INSERT INTO `aluguel` (`idAluguel`, `data_inicio_aluguel`, `data_devolucao_aluguel`, `quilometragem_inicial`, `quilometragem_final`, `idVeiculo`, `status_aluguel`, `valor_total`, `idMtd_pagamento`, `nota_aluguel`, `idCliente`, `status_pagamento`) VALUES
-(5, '2018-12-01 00:00:00', '2018-12-07 00:00:00', 123123000, NULL, 37, '1', NULL, 1, NULL, 1, 0);
+INSERT INTO `aluguel` (`idAluguel`, `data_inicio_aluguel`, `data_devolucao_aluguel`, `quilometragem_inicial`, `quilometragem_final`, `idVeiculo`, `status_aluguel`, `valor_total`, `idMtd_pagamento`, `nota_aluguel`, `idCliente`, `status_pagamento`, `data_entrega`) VALUES
+(5, '2018-12-01 00:00:00', '2018-12-07 00:00:00', 123123000, 500, 37, '2', 800, 1, NULL, 1, 1, '2018-12-05 00:00:00'),
+(6, '2018-12-01 00:00:00', '2018-12-04 00:00:00', 123123000, NULL, 36, '1', NULL, 1, NULL, 1, 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -234,7 +236,7 @@ CREATE TABLE `veiculo` (
 
 INSERT INTO `veiculo` (`idVeiculo`, `numero_chassi`, `idModelo`, `status_carro`, `placa_carro`, `cor_carro`, `data_aquisicao`, `quilometragem_veiculo`, `valor_diaria`, `valor_km`) VALUES
 (36, '12312321', 14, '2', 'QWE-1231', 'Prata', '1970-01-01', '123123213', 312.31, 123.12),
-(37, '23123213', 2, '2', '132-1313', 'Preto', '1995-12-12', '123123213', 200, 20);
+(37, '23123213', 2, '1', '132-1313', 'Preto', '1995-12-12', '123123500', 200, 20);
 
 -- --------------------------------------------------------
 
@@ -327,7 +329,7 @@ ALTER TABLE `veiculo_avarias`
 -- AUTO_INCREMENT for table `aluguel`
 --
 ALTER TABLE `aluguel`
-  MODIFY `idAluguel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idAluguel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `avarias`

@@ -112,7 +112,7 @@ if(!isset($_SESSION['user'])){
 
      function lista_incio(){
         var SENDVALUE = {
-        controle: '4' 
+        controle: '0' 
       }
 
        $.ajax({
@@ -415,8 +415,8 @@ if(!isset($_SESSION['user'])){
         <?php require_once "html/aluguel/frm-baixa-aluguel.php"; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
         <button type="button" id="baixa_alg" class="btn btn-primary">Finalizar</button>
+        <button type="button" id="bt-cancelar" class="btn btn-secondary" data-dismiss="modal">Sair</button>
       </div>
     </div>
   </div>

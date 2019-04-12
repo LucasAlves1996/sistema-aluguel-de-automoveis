@@ -120,7 +120,7 @@ $carro = new automovel();
     <div class="col-md-6">
           <label for="data_cadastro">Data de aquisição</label>
           
-          <input type="text" class="form-control" id="data_cadastro">
+          <input type="date" class="form-control" id="data_cadastro">
     </div>
   </div>
 
@@ -149,7 +149,6 @@ $carro = new automovel();
     $("#diaria_cadastro").mask("999,99");
     $("#km_valor_cadastro").mask("999,99");
     $("#placa_cadastro").mask("AAA-9999");
-    $('#data_cadastro').mask('00/00/0000');
     $('#nrm_chassi_cadastro').mask('99999999999999999');
 
     //TRATATIVA PARA ADICIONAR MARCA OU MODELO

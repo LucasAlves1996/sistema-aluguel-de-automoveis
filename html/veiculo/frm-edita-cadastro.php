@@ -114,7 +114,7 @@
     <div class="col-md-6">
           <label for="edt_data_cadastro">Data de aquisição</label>
           
-          <input type="text" class="form-control" id="edt_data_cadastro">
+          <input type="date" class="form-control" id="edt_data_cadastro">
     </div>
 
 
@@ -160,7 +160,6 @@
    $("#edt_diaria_cadastro").mask("999,99");
     $("#edt_km_valor_cadastro").mask("999,99");
     $("#edt_placa_cadastro").mask("AAA-9999");
-    $('#edt_data_cadastro').mask('00/00/0000');
   
 
     // $modelo = $this->getModelo();

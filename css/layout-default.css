@@ -189,15 +189,15 @@ label{
 	border:none;
 	box-shadow:none;
 }
-#btn_cadastro, #btn_cadastro_aluguel:hover{
+#btn_cadastro:hover, #btn_cadastro_aluguel:hover{
 	background-color:rgb(60,150,60);
 }
-#bt-cadastrar, #bt-update, #btn_alg, #envia_alg{
+#bt-cadastrar, #bt-update, #btn_alg, #envia_alg, #baixa_alg{
 	background-color:rgb(50,125,50);
 	border:none;
 	box-shadow:none;
 }
-#bt-cadastrar, #bt-update, #btn_alg, #envia_alg:hover{
+#bt-cadastrar:hover, #bt-update:hover, #btn_alg:hover, #envia_alg:hover, #baixa_alg:hover{
 	background-color:rgb(60,150,60);
 }
 #bt-cancelar{
@@ -222,6 +222,9 @@ label{
 	color:rgb(0,0,0);
 }
 #edita_cadastro, #edita_aluguel, #cadastro_aluguel{
+    color: rgb(0,0,0) !important;
+}
+.baixa_aluguel{
     color: rgb(0,0,0) !important;
 }
 
